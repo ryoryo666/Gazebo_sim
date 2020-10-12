@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+  <node name="pose_info" pkg="gazebo_sim" type="pose_of_two_wheel.py"/>
+  <node name="turning_info_publisher" pkg="gazebo_sim" type="turning_info_pub.py" output="screen"/>
+</launch>

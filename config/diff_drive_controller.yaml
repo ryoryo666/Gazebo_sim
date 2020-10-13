@@ -16,15 +16,6 @@ diff_drive_controller:
   odom_frame_id: odom
   publish_cmd: true
 
-  pid_gains:
-    left_wheel:
-      p: 0.1
-      i: 1
-      d: 0
-    right_wheel:
-      p: 0.1
-      i: 1
-      d: 0
 
   # limits
   linear:

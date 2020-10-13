@@ -46,6 +46,7 @@
 
   <gazebo reference="base_link">
    <material>Gazebo/Gray</material>
+   <gravity>true</gravity>
   </gazebo>
 
 

@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import rospy
+import tf
 from geometry_msgs.msg import Pose2D
 from geometry_msgs.msg import Twist
 from std_msgs.msg import Time
@@ -28,7 +29,6 @@ def callback(data):
 def pub():
     rospy.init_node("robot_pose_publisher", anonymous=True)
     rospy.Subscriber("turning_info", curve_data, callback)
-    pub=rospy.Publisher("pose", Pose2D, queue_size=10)
 
     pose.x=0.0
     pose.y=0.0
@@ -64,7 +64,9 @@ def pub():
             pose.y = pose.y + vector.linear.y*dt
             pose.theta = pose.theta + vector.angular.z*dt
 
-        pub.publish(pose)
+        br=tf.TransformBroadcaster()
+        br.sendTransform((pose.x, pose.y, 0.0), tf.transformations.quaternion_from_euler(0, 0, pose.theta), rospy.Time.now(), "body_link", "base_link")
+
         r.sleep()
 
 if __name__=="__main__":

@@ -1,14 +1,33 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import math
 import rospy
 from geometry_msgs.msg import Twist
 from nav_msgs.msg import Odometry
 
+New_twist=Twist()
+
 def New_cmd(odom):
-	x_cmd=
-	y_cmd=
-	v_cmd=
+	# Now Pose
+	x_p=odom.pose.pose.position.x
+	y_p=odom.pose.pose.position.y
+	theta_p=odom.pose.pose.orientation.w
+
+	# Next point on target orbit
+	x_r=
+	y_r=
+	theta_r=
+
+	# Error value
+	x_err= (x_r-x_p)*math.cos(theta_p)+(y_r-y_p)*math.sin(theta_p)
+	y_err= -(x_r-x_p)*math.sin(theta_p)+(y_r-y_p)*math.cos(theta_p)
+	theta_err=theta_r-theta_p
+
+
+	New_twist.twist.twist.linear.x=
+	New_twist.twist.twist.angular.z=
+
 
 def Set():
 	rospy.init_node("Kanayama_Method_Controller", anonymous=True)

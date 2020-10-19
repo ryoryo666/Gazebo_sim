@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="filename" default="Orbit.csv"/>
+
+  <node name="OrbitTracking" pkg="gazebo_sim" type="OrbitTrackingControler.py"/>
+  <node name="OrbitRecorder" pkg="gazebo_sim" type="OrbitRecorder.py">
+    <param name="csv_path" value="$(find gazebo_sim)/csv/$(arg filename)"/>
+  </node>
+</launch>

@@ -2,7 +2,7 @@
 <launch>
   <arg name="filename" default="Mobile_Orbit.csv"/>
 
-  <node name="OrbitTracking" pkg="gazebo_sim" type="OrbitTrackingControler.py"/>
+  <node name="OrbitTracking" pkg="gazebo_sim" type="OrbitTrackingControler.py" output="screen"/>
   <node name="OrbitRecorder" pkg="gazebo_sim" type="OrbitRecorder.py">
     <param name="csv_path" value="$(find gazebo_sim)/csv/$(arg filename)"/>
   </node>

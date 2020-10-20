@@ -19,11 +19,11 @@
     <rosparam command="load"
               file="$(find gazebo_sim)/config/diff_drive_controller.yaml"
               ns="/robot_gazebo"/>
-<!--
+
     <rosparam command="load"
               file="$(find gazebo_sim)/config/joint_state_controller.yaml"
               ns="/robot_gazebo"/>
--->
+
     <node name="controller_spawner"
           pkg="controller_manager"
           type="spawner"
@@ -31,7 +31,7 @@
           output="screen"
           ns="/robot_gazebo"
           args="diff_drive_controller joint_state_controller"/>
-<!--
+
     <node name="robot_state_publisher"
           pkg="robot_state_publisher"
           type="robot_state_publisher"
@@ -39,7 +39,7 @@
           output="screen"
           ns="/robot_gazebo">
     </node>
--->
+
 <!--    <node name="joy" pkg="joy" type="joy_node"/>
     <node name="move_gazebo" pkg="gazebo_sim" type="move_gazebo.py" output="screen"/>
 -->

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <launch>
-  <arg name="filename" default="Orbit.csv"/>
+  <arg name="filename" default="Mobile_Orbit.csv"/>
 
   <node name="OrbitTracking" pkg="gazebo_sim" type="OrbitTrackingControler.py"/>
   <node name="OrbitRecorder" pkg="gazebo_sim" type="OrbitRecorder.py">

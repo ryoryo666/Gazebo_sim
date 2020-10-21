@@ -32,12 +32,12 @@ def Set():
 
 if __name__=="__main__":
     try:
-        rospy.init_node("Orbit_Recorder", anonymous=False)
-        path=rospy.get_param('~csv_path','/home/ryo/catkin_ws/src/gazebo_sim/csv/Target_Orbit.csv')
+        rospy.init_node("Trajectory_Recorder", anonymous=False)
+        path=rospy.get_param('~csv_path','/home/ryo/catkin_ws/src/gazebo_sim/csv/TargetTrajectory.csv')
         oddm_msg=Odometry()
 #        print(os.getcwd())
         with open(path, mode="w") as f:
-            print("New Orbit")
+            print("New Trajectory")
         Set()
 
     except rospy.ROSInterruptException: pass

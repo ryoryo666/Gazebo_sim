@@ -12,7 +12,7 @@ kx=0.1
 ky=0.1
 kth=0.1
 num=1
-New_twist=Twist()
+new_twist=Twist()
 
 def New_cmd(odom_msg):
 	global Target_Orbit,num
@@ -34,9 +34,9 @@ def New_cmd(odom_msg):
 	theta_err = theta_r-theta_p
 
 	# New Command Value
-	New_twist.linear.x  = v_r*math.cos(theta_err)+kx*x_err
-	New_twist.angular.z = w_r+v_r*(ky*y_err+kth*math.sin(theta_err))
-	pub.publish(New_twist)
+	new_twist.linear.x  = v_r*math.cos(theta_err)+kx*x_err
+	new_twist.angular.z = w_r+v_r*(ky*y_err+kth*math.sin(theta_err))
+	pub.publish(new_twist)
 
 	num+=1
 #	if num==len(Target_Orbit):
@@ -52,8 +52,8 @@ def Set():
 if __name__=="__main__":
     try:
 		print(glob.glob(os.path.join("/home/ryo/catkin_ws/src/gazebo_sim/csv/", "*.csv")))
-		filename=raw_input("TargetOrbit File Select\n>> ")+".csv"
-		Target_Orbit=np.loadtxt(fname="/home/ryo/catkin_ws/src/gazebo_sim/csv/"+filename, delimiter = ",")
+		filename=raw_input("TargetTrajectory File Select\n>> ")+".csv"
+		Target_Trajectory=np.loadtxt(fname="/home/ryo/catkin_ws/src/gazebo_sim/csv/"+filename, delimiter = ",")
 
 		pub=rospy.Publisher("/robot_gazebo/diff_drive_controller/cmd_vel", Twist, queue_size=2)
 		Set()

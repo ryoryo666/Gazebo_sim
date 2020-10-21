@@ -2,9 +2,11 @@ import glob,os
 import numpy as np
 import matplotlib.pyplot as plt
 
-print(glob.glob(os.path.join("./", "*.csv")))
-filename=raw_input("FileName>> ")+".csv"
-data=np.loadtxt(fname=filename, delimiter = ",")
+file_list=glob.glob(os.path.join("", "*.csv"))
+for i in range(len(file_list)):
+	print(str(i)+": "+file_list[i-1])
+number=int(raw_input("FileNumber>> "))
+data=np.loadtxt(fname=file_list[number], delimiter = ",")
 x=data[:,0]
 y=data[:,1]
 

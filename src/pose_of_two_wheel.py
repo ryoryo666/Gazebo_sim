@@ -40,6 +40,8 @@ def pub():
     vec_inner=0.5            # Inner ring vector [m/s]
     t=Time(data=0.0)
     dt=0.1
+    
+    br=tf.TransformBroadcaster()
 
     while not rospy.is_shutdown():
         t.data+=dt
@@ -64,7 +66,6 @@ def pub():
             pose.y = pose.y + vector.linear.y*dt
             pose.theta = pose.theta + vector.angular.z*dt
 
-        br=tf.TransformBroadcaster()
         br.sendTransform((pose.x, pose.y, 0.0), tf.transformations.quaternion_from_euler(0, 0, pose.theta), rospy.Time.now(), "body_link", "base_link")
 
         r.sleep()

@@ -20,21 +20,21 @@ y1=data1[:,1]
 x2=data2[:,0]
 y2=data2[:,1]
 
-
-ax.plot(x1,y1,color="red", label=file_list[number1])
-ax.plot(x2,y2, color="green", label=file_list[number2])
+ax.plot(x1,y1,color="red", label=file_list[number1].replace(".csv",""))
+ax.plot(x2,y2, color="green", label=file_list[number2].replace(".csv",""))
 
 # Label Name
 ax.set_xlabel("X[m]", fontsize=18)
 ax.set_ylabel("Y[m]", fontsize=18)
 
-# x/y Axis Limit
+# x and y Axis Limit
 lim=10
 ax.set_xlim(-1*lim,lim)
 ax.set_ylim(-1*lim,lim)
 
-# Bottom position Adjustment
+# Position Adjustment
 plt.subplots_adjust(bottom=0.15)
+plt.subplots_adjust(left=0.2)
 
 # Label Font Size
 ax.tick_params(labelsize=15)

@@ -22,11 +22,11 @@ def New_cmd(odom_msg):
 	theta_p=odom_msg.pose.pose.orientation.w
 
 	# Refference point on target orbit
-	x_r=Target_Orbit[num][0]
-	y_r=Target_Orbit[num][1]
-	theta_r=Target_Orbit[num][2]
-	v_r=Target_Orbit[num][3]
-	w_r=Target_Orbit[num][4]
+	x_r=Target_Trajectory[num][0]
+	y_r=Target_Trajectory[num][1]
+	theta_r=Target_Trajectory[num][2]
+	v_r=Target_Trajectory[num][3]
+	w_r=Target_Trajectory[num][4]
 
 	# Error value
 	x_err = (x_r-x_p)*math.cos(theta_p)+(y_r-y_p)*math.sin(theta_p)
@@ -51,9 +51,11 @@ def Set():
 
 if __name__=="__main__":
     try:
-		print(glob.glob(os.path.join("/home/ryo/catkin_ws/src/gazebo_sim/csv/", "*.csv")))
-		filename=raw_input("TargetTrajectory File Select\n>> ")+".csv"
-		Target_Trajectory=np.loadtxt(fname="/home/ryo/catkin_ws/src/gazebo_sim/csv/"+filename, delimiter = ",")
+		file_list=glob.glob(os.path.join("/home/ryo/catkin_ws/src/gazebo_sim/csv", "*.csv"))
+		for i in range(len(file_list)):
+			print(str(i)+": "+file_list[i])
+		number=int(raw_input("FileNumber>> "))
+		Target_Trajectory=np.loadtxt(fname=file_list[number], delimiter = ",")
 
 		pub=rospy.Publisher("/robot_gazebo/diff_drive_controller/cmd_vel", Twist, queue_size=2)
 		Set()

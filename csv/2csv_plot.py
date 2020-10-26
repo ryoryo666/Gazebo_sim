@@ -4,24 +4,29 @@ import matplotlib.pyplot as plt
 
 fig, ax=plt.subplots()
 
-file_list=glob.glob(os.path.join("", "*.csv"))
-for i in range(len(file_list)):
-	print(str(i)+": "+file_list[i])
-number1=int(raw_input("FileNumber1>> "))
-data1=np.loadtxt(fname=file_list[number1], delimiter = ",")
+file_list_M=glob.glob(os.path.join("", "Mobile*"))
+file_list_T=glob.glob(os.path.join("", "Target*"))
 
-for i in range(len(file_list)):
-	print(str(i)+": "+file_list[i])
+file_list_M.sort()
+for i in range(len(file_list_M)):
+	print(str(i)+": "+file_list_M[i])
+number1=int(raw_input("FileNumber1>> "))
+data1=np.loadtxt(fname=file_list_M[number1], delimiter = ",")
+print("\n")
+
+file_list_T.sort()
+for i in range(len(file_list_T)):
+	print(str(i)+": "+file_list_T[i])
 number2=int(raw_input("FileNumber2>> "))
-data2=np.loadtxt(fname=file_list[number2], delimiter = ",")
+data2=np.loadtxt(fname=file_list_T[number2], delimiter = ",")
 
 x1=data1[:,0]
 y1=data1[:,1]
 x2=data2[:,0]
 y2=data2[:,1]
 
-ax.plot(x1,y1,color="red", label=file_list[number1].replace(".csv",""))
-ax.plot(x2,y2, color="green", label=file_list[number2].replace(".csv",""))
+ax.plot(x1,y1,color="red", label=file_list_M[number1].replace(".csv",""))
+ax.plot(x2,y2, color="green", label=file_list_T[number2].replace(".csv",""))
 
 # Label Name
 ax.set_xlabel("X[m]", fontsize=18)

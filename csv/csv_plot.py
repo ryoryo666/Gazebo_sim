@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 file_list=glob.glob(os.path.join("", "*.csv"))
+file_list.sort()
 for i in range(len(file_list)):
 	print(str(i)+": "+file_list[i])
 number=int(raw_input("FileNumber>> "))

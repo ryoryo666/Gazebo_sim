@@ -8,9 +8,9 @@ import glob,os
 from geometry_msgs.msg import Twist
 from nav_msgs.msg import Odometry
 
-kx=0.1
-ky=0.1
-kth=0.1
+kx=0.05
+ky=0.07
+kth=0.05
 num=1
 new_twist=Twist()
 
@@ -51,8 +51,11 @@ def Set():
 
 if __name__=="__main__":
     try:
-		file_list=glob.glob(os.path.join("/home/ryo/catkin_ws/src/gazebo_sim/csv", "*.csv"))
+		file_list=glob.glob(os.path.join("/home/ryo/catkin_ws/src/gazebo_sim/csv", "Target*"))
+		file_list.sort()
 		for i in range(len(file_list)):
+			file_list[i]=file_list[i].replace("/home/ryo/catkin_ws/src/gazebo_sim/csv/", "")
+			file_list[i]=file_list[i].replace(".csv", "")
 			print(str(i)+": "+file_list[i])
 		number=int(raw_input("FileNumber>> "))
 		Target_Trajectory=np.loadtxt(fname=file_list[number], delimiter = ",")

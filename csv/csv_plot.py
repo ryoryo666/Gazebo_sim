@@ -9,7 +9,7 @@ for i in range(len(file_list)):
 number=int(raw_input("FileNumber>> "))
 data=np.loadtxt(fname=file_list[number], delimiter = ",")
 x=data[:,0]
-y=data[:,1]
+y=data[:,3]
 
 
 plt.plot(x,y,color="red")
@@ -22,6 +22,7 @@ plt.ylabel("Y[m]", fontsize=18)
 lim=10
 plt.xlim(-1*lim,lim)
 plt.ylim(-1*lim,lim)
+#plt.ylim(-0.1,0.1)
 
 # Position Adjustment
 plt.subplots_adjust(bottom=0.15)

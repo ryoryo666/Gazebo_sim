@@ -11,7 +11,7 @@ def curve_info_pub():
     while not rospy.is_shutdown():
         turning_info.Radius=float(raw_input("Turning radius: "))
         turning_info.Direction=raw_input("Turning direction:")
-        print("")
+        print ""
         pub.publish(turning_info)
 
 if __name__=="__main__":

@@ -40,7 +40,8 @@
           ns="/robot_gazebo">
     </node>
 
-<!--    <node name="joy" pkg="joy" type="joy_node"/>
+<!--
+    <node name="joy" pkg="joy" type="joy_node"/>
     <node name="move_gazebo" pkg="gazebo_sim" type="move_gazebo.py" output="screen"/>
 -->
 

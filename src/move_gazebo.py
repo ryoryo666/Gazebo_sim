@@ -1,5 +1,6 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
+#カーブ情報(向き・回転半径)を元にJOYの前後で走行
 
 import rospy
 from geometry_msgs.msg import Twist

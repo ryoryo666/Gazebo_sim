@@ -13,7 +13,8 @@ def Recorder(odom_msg):
     theta_ref=odom_msg.pose.pose.orientation.w
     v_ref=odom_msg.twist.twist.linear.x
     w_ref=odom_msg.twist.twist.angular.z
-    rospy.loginfo("Odometry: x=%f y=%f θ=%f", x_ref, y_ref, theta_ref)
+    time=odom_msg.header.stamp.secs+(odom_msg.header.stamp.nsecs*(10**-9))
+    rospy.loginfo("Odometry: x={0} y={1} θ={2}". format(x_ref, y_ref, theta_ref))
 
     buf=str(x_ref)+","+str(y_ref)+","+str(theta_ref)+","+str(v_ref)+","+str(w_ref)+","+str(time)+"\n"
     with open(path, mode="a") as f:

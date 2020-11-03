@@ -7,8 +7,7 @@
 
   <param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" />
 
-  <node name="pose_info" pkg="gazebo_sim" type="pose_of_two_wheel.py"/>
-  <!--<node name="pose_br" pkg="gazebo_sim" type="pose_broadcaster.py"/>-->
+  <node name="pose_info" pkg="gazebo_sim" type="PoseBr_to_tf.py"/>
   <node name="turning_info_pub" pkg="gazebo_sim" type="turning_info_pub.py" output="screen"/>
 
   <node if="$(arg gui)" name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui"/>

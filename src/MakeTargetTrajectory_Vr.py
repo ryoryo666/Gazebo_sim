@@ -14,13 +14,13 @@ def Pub():
     while not rospy.is_shutdown():
         if count <= 5.0:
             twist.linear.x=1.0
-            twist.angular.z=0.5
+            twist.angular.z=-0.3
         elif count <= 15.0:
             twist.linear.x=1.0
-            twist.angular.z=-0.5
+            twist.angular.z=0.5
         elif count <= 20:
             twist.linear.x=1.0
-            twist.angular.z=0.0
+            twist.angular.z=-0.7
         elif count <= 30.0:
             twist.linear.x=1.0
             twist.angular.z=0.2

@@ -53,12 +53,11 @@ if __name__=="__main__":
     try:
 		file_list=glob.glob(os.path.join("/home/ryo/catkin_ws/src/gazebo_sim/csv", "Target*"))
 		file_list.sort()
+		print "\n"
 		for i in range(len(file_list)):
-			file_list[i]=file_list[i].replace("/home/ryo/catkin_ws/src/gazebo_sim/csv/", "")
-			file_list[i]=file_list[i].replace(".csv", "")
-			print(str(i)+": "+file_list[i])
-		number=int(raw_input("FileNumber>> "))
-		Target_Trajectory=np.loadtxt(fname=file_list[number], delimiter = ",")
+			print str(i)+":"+file_list[i].replace("/home/ryo/catkin_ws/src/gazebo_sim/csv/", "")
+		number=int(raw_input("\nFileNumber>> "))
+		Target_Trajectory=np.loadtxt(file_list[number], delimiter = ",")
 
 		pub=rospy.Publisher("/robot_gazebo/diff_drive_controller/cmd_vel", Twist, queue_size=2)
 		Set()

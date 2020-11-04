@@ -17,12 +17,12 @@ def callback(msg):
     flag=True
     if TurningData.Direction=="s":
         flag.data=False
-        print("Robot stop")
+        print "Robot stop"
     elif TurningData.Radius==0:
-        print("Straight")
+        print "Straight"
     elif TurningData.Radius != 0:
-        print("Curve:R=%f" % TurningData.Radius)
-        print("Direction:%s (r:Right l:Left)" %TurningData.Direction)
+        print "Curve:R=%f" % TurningData.Radius 
+        print "Direction:%s (r:Right l:Left)" %TurningData.Direction
 
 
 def pub():

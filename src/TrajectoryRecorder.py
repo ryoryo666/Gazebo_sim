@@ -16,7 +16,7 @@ def Recorder(odom_msg):
     time=odom_msg.header.stamp.secs+(odom_msg.header.stamp.nsecs*(10**-9))
     rospy.loginfo("Odometry: x={0} y={1} θ={2}". format(x_ref, y_ref, theta_ref))
 
-    buf=str(x_ref)+","+str(y_ref)+","+str(theta_ref)+","+str(v_ref)+","+str(w_ref)+","+str(time)+"\n"
+    buf=str(time)+","+str(x_ref)+","+str(y_ref)+","+str(theta_ref)+","+str(v_ref)+","+str(w_ref)+"\n"
     with open(path, mode="a") as f:
         f.write(buf)
     time+=0.01

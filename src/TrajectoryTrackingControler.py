@@ -22,11 +22,11 @@ def New_cmd(odom_msg):
 	theta_p=odom_msg.pose.pose.orientation.w
 
 	# Refference point on target orbit
-	x_r=Target_Trajectory[num][0]
-	y_r=Target_Trajectory[num][1]
-	theta_r=Target_Trajectory[num][2]
-	v_r=Target_Trajectory[num][3]
-	w_r=Target_Trajectory[num][4]
+	x_r=Target_Trajectory[num][1]
+	y_r=Target_Trajectory[num][2]
+	theta_r=Target_Trajectory[num][3]
+	v_r=Target_Trajectory[num][4]
+	w_r=Target_Trajectory[num][5]
 
 	# Error value
 	x_err = (x_r-x_p)*math.cos(theta_p)+(y_r-y_p)*math.sin(theta_p)

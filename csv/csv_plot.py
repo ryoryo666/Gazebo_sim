@@ -9,8 +9,8 @@ for i in range(len(file_list)):
 number=int(raw_input("\nPlot File Number>> "))
 data=np.loadtxt(fname=file_list[number], delimiter = ",")
 #x:0 y:1 theta:2 v:3 w:4 time:5
-x=data[:,0]
-y=data[:,3]
+x=data[:,1]
+y=data[:,2]
 
 
 plt.plot(x,y,color="red")

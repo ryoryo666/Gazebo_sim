@@ -5,16 +5,18 @@ import rospy
 from nav_msgs.msg import Odometry
 from geometry_msgs.msg import Twist
 import os
+import Quat_Euler
 
 def Recorder(odom_msg):
     global time
     x_ref=odom_msg.pose.pose.position.x
     y_ref=odom_msg.pose.pose.position.y
-    theta_ref=odom_msg.pose.pose.orientation.w
+    q=Quat_Euler.Quat_TF(0,0, odom_msg.pose.pose.orientation.z, odom_msg.pose.pose.orientation.w)
+    theta_ref=q.Euler_z()
     v_ref=odom_msg.twist.twist.linear.x
     w_ref=odom_msg.twist.twist.angular.z
     time=odom_msg.header.stamp.secs+(odom_msg.header.stamp.nsecs*(10**-9))
-    rospy.loginfo("Odometry: x={0} y={1} θ={2}". format(x_ref, y_ref, theta_ref))
+    print "Odometry:x={0}   y={1}   θ={2}". format(x_ref, y_ref, theta_ref)
 
     buf=str(time)+","+str(x_ref)+","+str(y_ref)+","+str(theta_ref)+","+str(v_ref)+","+str(w_ref)+"\n"
     with open(path, mode="a") as f:

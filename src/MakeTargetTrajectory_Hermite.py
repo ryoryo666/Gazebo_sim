@@ -22,9 +22,9 @@ while(c<=1):
 	x=hermite.Xt(c)
 	y=hermite.Yt(c)
 	theta=hermite.Tht(c)
-	v=hermite.Vt(c)
-	w=hermite.Wt(c,dt)
-	
+	v=1.0
+	w=hermite.Wt(c,dt)*2
+
 	c+=dt
 	t=t+dt*10
 	buf=str(t)+","+str(x)+","+str(y)+","+str(theta)+","+str(v)+","+str(w)+"\n"

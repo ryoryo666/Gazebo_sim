@@ -35,7 +35,7 @@ def New_cmd(odom_msg):
 	y_diff=Target_Trajectory[num][2]-y_p
 
 	if math.sqrt((x_diff**2)+(x_diff**2)) < 0.5:
-		num+=1
+		num+=2
 		if num >= stop:
 			rospy.signal_shutdown("Finish")
 

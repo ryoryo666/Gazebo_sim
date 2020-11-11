@@ -10,14 +10,12 @@ file_list_T=glob.glob(os.path.join("", "Target*"))
 file_list_M.sort()
 for i in range(len(file_list_M)):
 	print str(i)+": "+file_list_M[i]
-print "\n"
 number1=int(raw_input("File Number1>> "))
 data1=np.loadtxt(fname=file_list_M[number1], delimiter = ",")
-
+print ""
 file_list_T.sort()
 for i in range(len(file_list_T)):
 	print str(i)+": "+file_list_T[i]
-print "\n"
 number2=int(raw_input("File Number2>> "))
 data2=np.loadtxt(fname=file_list_T[number2], delimiter = ",")
 
@@ -26,8 +24,8 @@ y1=data1[:,2]
 x2=data2[:,1]
 y2=data2[:,2]
 
-ax.plot(x1,y1,color="red", label=file_list_M[number1].replace(".csv",""))
-ax.plot(x2,y2, color="green", label=file_list_T[number2].replace(".csv",""))
+ax.plot(x1,y1,color="green", label=file_list_M[number1].replace(".csv",""))
+ax.plot(x2,y2, color="red", label=file_list_T[number2].replace(".csv",""))
 
 # Label Name
 ax.set_xlabel("X[m]", fontsize=18)

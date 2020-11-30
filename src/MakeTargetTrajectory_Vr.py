@@ -12,18 +12,18 @@ def Pub():
     r=rospy.Rate(20)
 
     while not rospy.is_shutdown():
-        if count <= 2.0:
-            twist.linear.x=1.0
+        if count <= 5.0:
+            twist.linear.x=0.15
             twist.angular.z=-0.0
         elif count <= 15.0:
-            twist.linear.x=1.0
-            twist.angular.z=-0.5
-        elif count <= 27:
-            twist.linear.x=1.0
-            twist.angular.z=--0.5
-        elif count <= 30.0:
-            twist.linear.x=1.0
-            twist.angular.z=0.0
+            twist.linear.x=0.15
+            twist.angular.z=0.2
+        elif count <= 25:
+            twist.linear.x=0.15
+            twist.angular.z=-0.2
+        elif count <= 35.0:
+            twist.linear.x=0.15
+            twist.angular.z=0.3
         else:
             break
 

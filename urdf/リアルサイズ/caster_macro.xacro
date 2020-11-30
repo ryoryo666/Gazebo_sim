@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:macro name="ball_macro" params="parent prefix xyz">
+
+   <joint name="${prefix}_joint" type="fixed">
+     <parent link="${parent}"/>
+     <child  link="${prefix}_link"/>
+     <origin xyz="${xyz}" rpy="0 0 0"/>
+   </joint>
+
+   <link name="${prefix}_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.1"/>
+      <inertia ixx="${0.4*0.1*(0.03825**2)}" ixy="0.0" ixz="0.0"
+               iyy="${0.4*0.1*(0.03825**2)}" iyz="0.0"
+               izz="${0.4*0.1*(0.03825**2)}"/>
+    </inertial>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.03825" />
+      </geometry>
+      <material name="green" />
+    </visual>
+    <collision>
+     <origin xyz="0 0 0" rpy="0 0 0"/>
+     <geometry>
+      <sphere radius="0.03825"/>
+     </geometry>
+     <material name="gray"/>
+    </collision>
+   </link>
+
+   <gazebo reference="${prefix}_link">
+     <material>Gazebo/Green</material>
+     <mu1 value="1"/>
+     <mu2 value="1"/>
+     <!--
+     <kp value="50000"/>
+     <kd value="10"/>
+   -->
+   </gazebo>
+
+  </xacro:macro>
+
+</robot>

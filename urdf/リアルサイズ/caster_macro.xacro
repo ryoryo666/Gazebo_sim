@@ -12,10 +12,10 @@
    <link name="${prefix}_link">
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0"/>
-      <mass value="0.1"/>
-      <inertia ixx="${0.4*0.1*(0.03825**2)}" ixy="0.0" ixz="0.0"
-               iyy="${0.4*0.1*(0.03825**2)}" iyz="0.0"
-               izz="${0.4*0.1*(0.03825**2)}"/>
+      <mass value="0.04"/>
+      <inertia ixx="${0.4*0.04*(0.03825**2)}" ixy="0.0" ixz="0.0"
+               iyy="${0.4*0.04*(0.03825**2)}" iyz="0.0"
+               izz="${0.4*0.04*(0.03825**2)}"/>
     </inertial>
 
     <visual>
@@ -36,12 +36,8 @@
 
    <gazebo reference="${prefix}_link">
      <material>Gazebo/Green</material>
-     <mu1 value="1"/>
-     <mu2 value="1"/>
-     <!--
-     <kp value="50000"/>
-     <kd value="10"/>
-   -->
+     <mu1 value="0.0"/>
+     <mu2 value="0.0"/>
    </gazebo>
 
   </xacro:macro>

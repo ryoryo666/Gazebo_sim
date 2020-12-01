@@ -47,8 +47,10 @@
 
     <gazebo reference="${prefix}_link">
      <material>Gazebo/Red</material>
-     <mu1 value="2.5"/>
-     <mu2 value="2.5"/>
+     <mu1 value="1.0"/>
+     <mu2 value="1.0"/>
+     <kp value="10000000.0" />
+     <kd value="1.0" />
     </gazebo>
 
   </xacro:macro>

@@ -4,12 +4,11 @@
   <xacro:include filename="$(find gazebo_sim)/urdf/wheel_macro.xacro"/>
   <xacro:include filename="$(find gazebo_sim)/urdf/caster_macro.xacro"/>
 
-  <xacro:wheel_macro prefix="left_wheel"  parent="body_link" xyz="0 0.13 0"/>
-  <xacro:wheel_macro prefix="right_wheel" parent="body_link" xyz="0 -0.13 0"/>
-  <xacro:ball_macro prefix="front_caster" parent="body_link" xyz="0.14 0 -0.06"/>
-  <xacro:ball_macro prefix="back_caster" parent="body_link" xyz="-0.14 0 -0.06"/>
+  <xacro:wheel_macro prefix="left_wheel"  parent="body_link" xyz="-0.1 0.13 0"/>
+  <xacro:wheel_macro prefix="right_wheel" parent="body_link" xyz="-0.1 -0.13 0"/>
+  <xacro:ball_macro prefix="front_caster" parent="body_link" xyz="0.1 0 -0.06"/>
 
-  <xacro:property name="x" value="0.4"/>
+  <xacro:property name="x" value="0.3"/>
   <xacro:property name="y" value="0.18"/>
   <xacro:property name="z" value="0.1"/>
   <xacro:property name="mass" value="1.0"/>
@@ -19,7 +18,7 @@
   <joint name="base_joint" type="fixed">
     <parent link="base_link"/>
     <child link="body_link"/>
-    <origin xyz="0 0 0.1" rpy="0 0 0"/>
+    <origin xyz="0.1 0 0.1" rpy="0 0 0"/>
   </joint>
 
   <link name="body_link">
@@ -37,7 +36,7 @@
       <geometry>
         <box size="${x} ${y+0.02} ${z}" />
       </geometry>
-      <material name="gray" />
+      <material name="white" />
     </visual>
 
     <collision>
@@ -50,7 +49,7 @@
   </link>
 
   <gazebo reference="body_link">
-   <material>Gazebo/Gray</material>
+   <material>Gazebo/White</material>
    <gravity>true</gravity>
   </gazebo>
 

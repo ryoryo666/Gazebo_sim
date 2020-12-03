@@ -64,11 +64,11 @@ def Set():
 
 if __name__=="__main__":
     try:
-		file_list=glob.glob(os.path.join("/home/ryo/catkin_ws/src/gazebo_sim/csv", "Target*"))
+		file_list=glob.glob(os.path.join("/home/ubuntu/catkin_ws/src/Gazebo_sim/csv", "Target*"))
 		file_list.sort()
 		print "\n"
 		for i in range(len(file_list)):
-			print str(i)+":"+file_list[i].replace("/home/ryo/catkin_ws/src/gazebo_sim/csv/", "")
+			print str(i)+":"+file_list[i].replace("/home/ubuntu/catkin_ws/src/Gazebo_sim/csv/", "")
 		number=int(raw_input("\nFileNumber>> "))
 		Target_Trajectory=np.loadtxt(file_list[number], delimiter = ",")
 		stop=len(Target_Trajectory)

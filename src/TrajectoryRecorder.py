@@ -38,7 +38,7 @@ def Set():
 if __name__=="__main__":
     try:
         rospy.init_node("Trajectory_Recorder", anonymous=False)
-        path=rospy.get_param('~csv_path','/home/ryo/catkin_ws/src/gazebo_sim/csv/TargetTrajectory.csv')
+        path=rospy.get_param('~csv_path','/home/ubuntu/catkin_ws/src/gazebo_sim/csv/TargetTrajectory.csv')
         time=0.0
 #        print(os.getcwd())
         with open(path, mode="w") as f:

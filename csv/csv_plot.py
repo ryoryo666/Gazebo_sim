@@ -13,7 +13,7 @@ x=data[:,1]
 y=data[:,2]
 
 
-plt.plot(x,y,color="red")
+plt.plot(x,y,color="red", linewidth="1.0")
 
 # Label Name
 plt.xlabel("X[m]", fontsize=18)

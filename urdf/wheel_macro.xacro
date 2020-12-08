@@ -36,7 +36,7 @@
         <geometry>
           <cylinder radius="${radius}" length="${length}" />
         </geometry>
-        <material name="black"/>
+        <material name="red"/>
       </visual>
       <collision>
        <geometry>
@@ -46,7 +46,7 @@
     </link>
 
     <gazebo reference="${prefix}_link">
-     <material>Gazebo/Black</material>
+     <material>Gazebo/Red</material>
      <mu1 value="1.0"/>
      <mu2 value="1.0"/>
      <kp value="10000000.0" />

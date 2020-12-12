@@ -4,7 +4,7 @@ import os
 import math
 import HermiteCurve
 
-path='../csv/TargetTrajectory_Re.csv'
+path='../../csv/TargetTrajectory_Re.csv'
 with open(path, mode="w") as f:
     print("New Trajectory")
 

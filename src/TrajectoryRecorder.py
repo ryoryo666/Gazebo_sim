@@ -32,7 +32,7 @@ def Set():
         break
         print("Record Start")
 
-    rospy.Subscriber("/robot_gazebo/diff_drive_controller/odom", Odometry, Recorder)
+    rospy.Subscriber("/possition", Odometry, Recorder)
     rospy.spin()
 
 if __name__=="__main__":

@@ -59,6 +59,13 @@
       <robotNamespace>/robot_gazebo</robotNamespace>
       <legacyModeNS>true</legacyModeNS>
     </plugin>
+
+    <plugin name="ground_truth" filename="libgazebo_ros_p3d.so">
+      <frameName>world</frameName>
+      <bodyName>body_link</bodyName>
+      <topicName>/possition</topicName>
+      <updateRate>50</updateRate>
+    </plugin>
   </gazebo>
 
 </robot>

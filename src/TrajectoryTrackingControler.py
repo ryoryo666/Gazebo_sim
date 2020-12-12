@@ -3,6 +3,7 @@
 
 import math
 import rospy
+import rospkg
 import numpy as np
 import glob,os
 from geometry_msgs.msg import Twist
@@ -17,7 +18,7 @@ import Quat_Euler
 #Euler
 kx=0.05
 ky=0.1
-kth=0.05
+kth=0.1
 
 num=1
 new_twist=Twist()
@@ -35,9 +36,11 @@ def New_cmd(odom_msg):
 	y_diff=Target_Trajectory[num][2]-y_p
 
 	if math.sqrt((x_diff**2)+(x_diff**2)) < 0.5:
-		num+=2
+		num+=100
 		if num >= stop:
 			rospy.signal_shutdown("Finish")
+	print "Target"
+	print "x:{0}	y:{1}".format(Target_Trajectory[num][1],Target_Trajectory[num][2])
 
 	# Refference point on target trajectory
 	x_r=Target_Trajectory[num][1]
@@ -57,18 +60,20 @@ def New_cmd(odom_msg):
 	pub.publish(new_twist)
 
 def Set():
-	rospy.init_node("Kanayama_Method_Controller", disable_signals=True, anonymous=True)
-	rospy.Subscriber("/robot_gazebo/diff_drive_controller/odom", Odometry, New_cmd)
+	rospy.Subscriber("/possition", Odometry, New_cmd)
 	rospy.spin()
 
 
 if __name__=="__main__":
     try:
-		file_list=glob.glob(os.path.join("/home/ubuntu/catkin_ws/src/Gazebo_sim/csv", "Target*"))
+		rospy.init_node("Kanayama_Method_Controller", disable_signals=True, anonymous=True)
+		rospack=rospkg.RosPack()
+		pack=rospack.get_path("gazebo_sim")
+		file_list=glob.glob(os.path.join(pack+"/csv", "Target*"))
 		file_list.sort()
 		print "\n"
 		for i in range(len(file_list)):
-			print str(i)+":"+file_list[i].replace("/home/ubuntu/catkin_ws/src/Gazebo_sim/csv/", "")
+			print str(i)+":"+file_list[i].replace(pack+"/csv/", "")
 		number=int(raw_input("\nFileNumber>> "))
 		Target_Trajectory=np.loadtxt(file_list[number], delimiter = ",")
 		stop=len(Target_Trajectory)

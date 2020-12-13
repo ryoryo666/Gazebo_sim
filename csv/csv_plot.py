@@ -13,8 +13,8 @@ x=data[:,1]
 y=data[:,2]
 
 
-plt.plot(x,y,color="red", lw="1.0")
-#plt.scatter(x,y,color="red", lw="0.5")
+#plt.plot(x,y,color="red", lw="1.0")
+plt.scatter(x,y,color="red", lw="0.5")
 
 
 # Label Name

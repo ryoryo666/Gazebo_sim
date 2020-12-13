@@ -17,10 +17,10 @@ import Quat_Euler
 
 #Euler
 kx=0.05
-ky=0.1
-kth=0.1
+ky=0.7
+kth=0.5
 
-num=1
+num=0
 new_twist=Twist()
 
 def New_cmd(odom_msg):
@@ -35,9 +35,10 @@ def New_cmd(odom_msg):
 	x_diff=Target_Trajectory[num][1]-x_p
 	y_diff=Target_Trajectory[num][2]-y_p
 
-	if math.sqrt((x_diff**2)+(x_diff**2)) < 0.5:
-		num+=100
+	if math.sqrt((x_diff**2)+(x_diff**2)) < 0.2:
+		num+=1
 		if num >= stop:
+			print "\nFinish\n"
 			rospy.signal_shutdown("Finish")
 	print "Target"
 	print "x:{0}	y:{1}".format(Target_Trajectory[num][1],Target_Trajectory[num][2])

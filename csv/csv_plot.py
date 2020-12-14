@@ -22,7 +22,7 @@ plt.xlabel("X[m]", fontsize=18)
 plt.ylabel("Y[m]", fontsize=18)
 
 # x/y Axis Limit
-lim=11
+lim=1.5
 plt.xlim(-1*lim,lim)
 plt.ylim(-1*lim,lim)
 #plt.ylim(-0.1,0.1)

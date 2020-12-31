@@ -6,7 +6,7 @@ fig, ax=plt.subplots()
 
 c_path=os.path.dirname(os.path.abspath(__file__))
 file_list_M=glob.glob(os.path.join(c_path, "Mobile*"))
-file_list_T=glob.glob(os.path.join(c_path, "Target*"))
+file_list_T=glob.glob(os.path.join(c_path, "Reference*"))
 
 file_list_M.sort()
 for i in range(len(file_list_M)):

@@ -37,7 +37,7 @@ ax.set_xlabel("X[m]", fontsize=18)
 ax.set_ylabel("Y[m]", fontsize=18)
 
 # x and y Axis Limit
-lim=15
+lim=10
 ax.set_xlim(-1*lim,lim)
 ax.set_ylim(-1*lim,lim)
 

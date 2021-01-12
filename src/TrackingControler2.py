@@ -87,6 +87,9 @@ def New_cmd(odom_msg):
         Vc = uv / z
         Wc = np.sign(uw) * w_max
 
+    if Wc < 0.001:
+        Wc = 0.0
+
 	# New Command Value
     new_twist.linear.x  = Vc
     new_twist.angular.z = Wc

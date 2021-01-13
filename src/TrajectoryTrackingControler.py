@@ -69,7 +69,7 @@ if __name__=="__main__":
 
 		file_list=glob.glob(os.path.join(pack_path+"/csv", "Target*"))
 		file_list.sort()
-		print "\n"
+		print "\nSelect Reference Trajectory"
 		for i in range(len(file_list)):
 			print str(i)+":"+file_list[i].replace(pack_path+"/csv/", "")
 		number=int(raw_input("\nFileNumber>> "))

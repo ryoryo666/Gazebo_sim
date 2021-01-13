@@ -6,7 +6,7 @@ import math
 c_path=os.path.dirname(os.path.abspath(__file__))
 path=c_path+'/../../csv/ReferenceTrajectory_DFL.csv'
 with open(path, mode="w") as f:
-    print("\nCreate New Reference Path\n")
+    print("\nCreate New Reference Trajectory\n")
 
 t = 0.0
 x = 0.0

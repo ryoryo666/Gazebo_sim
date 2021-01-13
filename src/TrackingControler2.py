@@ -83,7 +83,7 @@ def New_cmd(odom_msg):
     uy = ay_r + ky1*vy_err + ky2*y_err
 
     uv += ux*math.cos(theta_p) + uy*math.sin(theta_p)
-    uw = (ux*math.cos(theta_p) - uy*math.sin(theta_p)) / uv
+    uw = (uy*math.cos(theta_p) - ux*math.sin(theta_p)) / uv
 
     z = max([abs(uv)/v_max, abs(uw)/w_max, 1])
     if z == 1:
@@ -95,9 +95,6 @@ def New_cmd(odom_msg):
     else:
         Vc = uv / z
         Wc = np.sign(uw) * w_max
-
-#    if Wc < 0.001:
-#        Wc = 0.0
 
 	# New Command Value
     new_twist.linear.x  = Vc
@@ -130,19 +127,19 @@ def shutdown():
 if __name__=="__main__":
     try:
         rospy.init_node("Kanayama_Method_Controller", disable_signals=True, anonymous=True)
+        pub=rospy.Publisher("/robot_gazebo/diff_drive_controller/cmd_vel", Twist, queue_size=2)
+
         rospack=rospkg.RosPack()
         pack=rospack.get_path("gazebo_sim")
         file_list=glob.glob(os.path.join(pack+"/csv", "Reference*"))
         file_list.sort()
-        print ""
+        print "\nSelect Reference Trajectory\n"
         for i in range(len(file_list)):
             print str(i)+":"+file_list[i].replace(pack+"/csv/", "")
-
         number=int(raw_input("\nFileNumber>> "))
         Reference_Path=np.loadtxt(file_list[number], delimiter = ",")
         stop=len(Reference_Path)
 
-        pub=rospy.Publisher("/robot_gazebo/diff_drive_controller/cmd_vel", Twist, queue_size=2)
         Set()
 
     except rospy.ROSInterruptException: pass

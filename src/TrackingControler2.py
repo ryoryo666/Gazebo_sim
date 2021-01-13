@@ -12,8 +12,8 @@ import Quat_Euler
 
 # Parameter
 kx1 = 1.0
-kx2 = 1.0
-ky1 = 10.0
+kx2 = 10.0
+ky1 = 1.0
 ky2 = 10.0
 
 pre_x = 0.0
@@ -25,7 +25,7 @@ uw = 0.0
 v_max = 0.5
 w_max = 0.5
 
-num = 0
+num = 4
 new_twist=Twist()
 
 def New_cmd(odom_msg):
@@ -34,7 +34,8 @@ def New_cmd(odom_msg):
 	# Now Pose
     x_p = odom_msg.pose.pose.position.x
     y_p = odom_msg.pose.pose.position.y
-    q=Quat_Euler.Quat_TF(0,0, odom_msg.pose.pose.orientation.z, odom_msg.pose.pose.orientation.w) # クウォータニオン　→　オイラー角
+    # クウォータニオン　→　オイラー角
+    q=Quat_Euler.Quat_TF(0,0, odom_msg.pose.pose.orientation.z, odom_msg.pose.pose.orientation.w)
     theta_p=q.Euler_z()	# z軸周りの回転
     v_p = odom_msg.twist.twist.linear.x
 
@@ -42,10 +43,16 @@ def New_cmd(odom_msg):
     dt = now_Time - pre_Time
     dt = dt.secs + dt.nsecs/(10.0**9.0)
 
-    x_diff=Reference_Path[num][1]-x_p
-    y_diff=Reference_Path[num][2]-y_p
-    if math.sqrt((x_diff**2)+(x_diff**2)) < 0.2:
-		num+=1
+    x_diff = x_p - pre_x
+    y_diff = y_p - pre_y
+    diff = math.sqrt((x_diff**2)+(x_diff**2))
+    cnt = int(diff / 0.005)
+    num += cnt
+
+#    x_diff=Reference_Path[num][1]-x_p
+#    y_diff=Reference_Path[num][2]-y_p
+#    if math.sqrt((x_diff**2)+(x_diff**2)) < 0.2:
+#		num+=1
     shutdown()
 
 #    print "Reference"
@@ -56,10 +63,12 @@ def New_cmd(odom_msg):
     y_r = Reference_Path[num][2]
     vx_r = Reference_Path[num][3]
     vy_r = Reference_Path[num][4]
+    print "Xr:{0}    Yr:{1}".format(x_r,y_r)
 
 	# Error value
     x_err = x_r - x_p
     y_err = y_r - y_p
+    print "Xerr:{0}    Yerr:{1}".format(x_err,y_err)
     vx_err = vx_r - (v_p*math.cos(theta_p))
     vy_err = vy_r - (v_p*math.sin(theta_p))
 
@@ -94,7 +103,7 @@ def New_cmd(odom_msg):
     new_twist.linear.x  = Vc
     new_twist.angular.z = Wc
     pub.publish(new_twist)
-    print "v:{0}    w:{1}".format(Vc,Wc)
+#    print "v:{0}    w:{1}".format(Vc,Wc)
 
     pre_x = x_p
     pre_y = y_p

@@ -11,16 +11,13 @@ with open(path, mode="w") as f:
 t = 0.0
 x = 0.0
 y = 0.0
-vx = 0.0   #[m/s]
+vx = 0.4   #[m/s]
 vy = 0.0   #[m/s]
-ax = 0.2
 
-dt = 1.0 / 20.0
+dt = 0.01
 while t <= 20.0:
     x += vx * dt
     y += vy * dt
-    if vx < 0.4:
-        vx += ax * dt
     t += dt
 
     buf=str(t)+","+str(x)+","+str(y)+","+str(vx)+","+str(vy)+"\n"

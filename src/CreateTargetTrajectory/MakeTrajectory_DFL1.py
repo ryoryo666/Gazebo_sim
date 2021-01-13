@@ -14,7 +14,7 @@ y = 0.0
 vx = 0.4   #[m/s]
 vy = 0.0   #[m/s]
 
-dt = 0.01
+dt = 0.05
 while t <= 20.0:
     x += vx * dt
     y += vy * dt

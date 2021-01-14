@@ -5,43 +5,43 @@ import matplotlib.pyplot as plt
 fig, ax=plt.subplots()
 
 c_path=os.path.dirname(os.path.abspath(__file__))
-file_list_M=glob.glob(os.path.join(c_path, "Mobile*"))
-file_list_R=glob.glob(os.path.join(c_path, "Reference*"))
+file_list=glob.glob(os.path.join(c_path, "*.csv"))
 
-file_list_M.sort()
-for i in range(len(file_list_M)):
-	print str(i)+": "+file_list_M[i].replace(c_path+"/", "")
+file_list.sort()
+for i in range(len(file_list)):
+	print str(i)+": "+file_list[i].replace(c_path+"/", "")
 number1=int(raw_input("File Number1>> "))
-data1=np.loadtxt(fname=file_list_M[number1], delimiter = ",")
-file_list_M[number1] = file_list_M[number1].replace(c_path+"/", "")
+data1=np.loadtxt(fname=file_list[number1], delimiter = ",")
+file_list[number1] = file_list[number1].replace(c_path+"/", "")
 
 print ""
-file_list_R.sort()
-for i in range(len(file_list_R)):
-	print str(i)+": "+file_list_R[i].replace(c_path+"/", "")
-number2=int(raw_input("File Number2>> "))
-data2=np.loadtxt(fname=file_list_R[number2], delimiter = ",")
-file_list_R[number2] = file_list_R[number2].replace(c_path+"/", "")
+for i in range(len(file_list)):
+	print str(i)+": "+file_list[i].replace(c_path+"/", "")
+number2=int(raw_input("File Number1>> "))
+data2=np.loadtxt(fname=file_list[number2], delimiter = ",")
+file_list[number2] = file_list[number2].replace(c_path+"/", "")
+
 
 x1=data1[:,1]
 y1=data1[:,2]
 x2=data2[:,1]
 y2=data2[:,2]
 
-Mobile_label = file_list_M[number1].replace(".csv","")
-Reference_label = file_list_R[number2].replace(".csv","")
-ax.plot(x1,y1,color="green", label=Mobile_label)
-ax.scatter(x2,y2,color="red", label=Reference_label, alpha=0.6, s=5)
-#ax.scatter(x2,y2, color="red", s=1.0, label=file_list_R[number2].replace(".csv",""))
+File1 = file_list[number1].replace(".csv","")
+File2 = file_list[number2].replace(".csv","")
+ax.plot(x1,y1,color="green", label=File1)
+ax.plot(x2,y2,color="red",   label=File2)
+
 
 # Label Name
 ax.set_xlabel("X[m]", fontsize=18)
 ax.set_ylabel("Y[m]", fontsize=18)
 
 # x and y Axis Limit
-lim=10
-ax.set_xlim(-1*lim,lim)
-ax.set_ylim(-1*lim,lim)
+x_lim = 10
+y_lim = 0.1
+ax.set_xlim(-1*x_lim, x_lim)
+ax.set_ylim(-1*y_lim, y_lim)
 
 # Position Adjustment
 plt.subplots_adjust(bottom=0.15)

@@ -11,10 +11,10 @@ from nav_msgs.msg import Odometry
 import Quat_Euler
 
 # Parameter
-kx1 = 1.0
-kx2 = 15.0
-ky1 = 1.0
-ky2 = 15.0
+kx1 = 0.1
+kx2 = 0.0001
+ky1 = 0.1
+ky2 = 30.0
 
 pre_x = 0.0
 pre_y = 0.0
@@ -25,7 +25,7 @@ uw = 0.0
 v_max = 0.5
 w_max = 0.5
 
-num = 4
+num = 0
 new_twist=Twist()
 
 def New_cmd(odom_msg):
@@ -52,11 +52,8 @@ def New_cmd(odom_msg):
     x_diff=Reference_Path[num][1]-x_p
     y_diff=Reference_Path[num][2]-y_p
     if math.sqrt((x_diff**2)+(x_diff**2)) < 0.2:
-		num+=5
+		num+=4
     shutdown()
-
-#    print "Reference"
-#    print "x:{0}	y:{1}".format(Reference_Path[num][1],Reference_Path[num][2])
 
 	# Reference point on Reference Path
     x_r = Reference_Path[num][1]
@@ -81,9 +78,11 @@ def New_cmd(odom_msg):
 
     ux = ax_r + kx1*vx_err + kx2*x_err
     uy = ay_r + ky1*vy_err + ky2*y_err
+    print "ux:{0}    uy:{1}".format(ux,uy)
 
     uv += ux*math.cos(theta_p) + uy*math.sin(theta_p)
-    uw = (uy*math.cos(theta_p) - ux*math.sin(theta_p)) / uv
+    uw = ( uy*math.cos(theta_p) - ux*math.sin(theta_p) ) / uv
+#    print "uv:{0}    uw:{1}".format(uv,uw)
 
     z = max([abs(uv)/v_max, abs(uw)/w_max, 1])
     if z == 1:
@@ -100,8 +99,7 @@ def New_cmd(odom_msg):
     new_twist.linear.x  = Vc
     new_twist.angular.z = Wc
     pub.publish(new_twist)
-    print "uv:{0}    uw:{1}".format(uv,uw)
-    print "v:{0}    w:{1}".format(Vc,Wc)
+#    print "v:{0}    w:{1}".format(Vc,Wc)
 
     pre_x = x_p
     pre_y = y_p

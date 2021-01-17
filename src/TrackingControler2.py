@@ -11,8 +11,8 @@ from nav_msgs.msg import Odometry
 import Quat_Euler
 
 # Parameter
-kx1 = 2.0   # P gain
-ky1 = 2.0
+kx1 = 1.2   # P gain
+ky1 = 1.2
 kx2 = 0.5   # D gain
 ky2 = 0.5
 
@@ -25,9 +25,9 @@ qe = 0.118
 uv = 0.0
 uw = 0.0
 v_max = 0.4
-w_max = 0.4
+w_max = 0.3
 
-num = 1
+num = 2
 new_twist=Twist()
 
 def New_cmd(odom_msg):
@@ -46,7 +46,6 @@ def New_cmd(odom_msg):
 #    dt = dt.secs + dt.nsecs/(10.0**9.0)
 #    t += dt
 
-    num += 2
     if abs(uv) < 1.0:
         num += 2
     shutdown()
@@ -66,7 +65,7 @@ def New_cmd(odom_msg):
     y_err = y_r - y_p
     vx_err = vx_r - (v_p*math.cos(theta_p))
     vy_err = vy_r - (v_p*math.sin(theta_p))
-    print "Xerr:{0}    Yerr:{1}".format(x_err,y_err)
+#    print "Xerr:{0}    Yerr:{1}".format(x_err,y_err)
 
     ux = ax_r + kx1*vx_err + kx2*x_err
     uy = ay_r + ky1*vy_err + ky2*y_err
@@ -75,7 +74,7 @@ def New_cmd(odom_msg):
     qe += ux*math.cos(theta_p) + uy*math.sin(theta_p)
     uv = qe
     uw = ( uy*math.cos(theta_p) - ux*math.sin(theta_p) ) / uv
-#    print "uv:{0}    uw:{1}".format(uv,uw)
+    print "uv:{0}    uw:{1}".format(uv,uw)
 
     z = max([abs(uv)/v_max, abs(uw)/w_max, 1])
     if z == 1:

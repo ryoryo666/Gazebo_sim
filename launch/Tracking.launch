@@ -3,6 +3,9 @@
   <arg name="filename" default="MobileTrajectory.csv"/>
 
   <node name="TrajectoryTracking" pkg="gazebo_sim" type="TrackingControler2.py" output="screen"/>
+  <!--
+  <node name="TrajectoryTracking" pkg="gazebo_sim" type="TrajectoryTrackingControler.py" output="screen"/>
+-->
   <node name="TrajectoryRecorder" pkg="gazebo_sim" type="TrajectoryRecorder.py">
     <param name="csv_path" value="$(find gazebo_sim)/csv/$(arg filename)"/>
   </node>

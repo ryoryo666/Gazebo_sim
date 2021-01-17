@@ -13,8 +13,8 @@ x=data[:,1]
 y=data[:,2]
 
 
-plt.plot(x,y,color="red", lw="1.0")
-#plt.scatter(x,y,color="red", lw="0.5")
+#plt.plot(x,y,color="red", lw="1.0")
+plt.scatter(x,y,color="red", lw="0.5", s=0.5)
 
 
 # Label Name
@@ -22,7 +22,7 @@ plt.xlabel("X[m]", fontsize=18)
 plt.ylabel("Y[m]", fontsize=18)
 
 # x/y Axis Limit
-lim=10
+lim=5
 plt.xlim(-1*lim,lim)
 plt.ylim(-1*lim,lim)
 #plt.ylim(-0.1,0.1)

@@ -1,17 +1,23 @@
-MobileTrajectory_DFL1.csv
+MobileTrajectory_DFL1-1.csv
     kx1 = 0.1
+    ky1 = 0.1
     kx2 = 0.0001
-    ky1 = 0.1
     ky2 = 30.0
 
-MobileTrajectory_DFL2.csv
+MobileTrajectory_DFL1-2.csv
     kx1 = 0.1
-    kx2 = 0.1
     ky1 = 0.1
+    kx2 = 0.1
     ky2 = 30.0
 
-MobileTrajectory_DFL3.csv
+MobileTrajectory_DFL1-3.csv
     kx1 = 0.1
-    kx2 = 0.1
     ky1 = 0.1
+    kx2 = 0.1
     ky2 = 0.1
+
+MobileTrajectory_DFL1-3.csv
+    kx1 = 1.2
+    ky1 = 1.2
+    kx2 = 0.5
+    ky2 = 0.5

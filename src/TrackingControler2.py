@@ -11,22 +11,39 @@ from nav_msgs.msg import Odometry
 import Quat_Euler
 
 # Parameter
+<<<<<<< HEAD
 kx1 = 1.2   # P gain
 ky1 = 1.2
 kx2 = 0.5   # D gain
 ky2 = 0.5
 
 qe = 0.2
+=======
+kx1 = 0.01   # P gain
+ky1 = 0.01
+kx2 = 0.0   # D gain
+ky2 = 0.0
+
+qe = 0.1
+>>>>>>> 27e56f1855e9ec716b0238dfb17c27032f2a5b70
 uv = 0.0
 uw = 0.0
-v_max = 0.4
+v_max = 0.2
 w_max = 0.3
 
 num = 0
+<<<<<<< HEAD
 new_twist=Twist()
 
 def New_cmd(odom_msg):
     global num, stop, pre_Time
+=======
+i = 1
+new_twist=Twist()
+
+def New_cmd(odom_msg):
+    global num, stop, pre_Time, t, i
+>>>>>>> 27e56f1855e9ec716b0238dfb17c27032f2a5b70
     global v_max, w_max, uv, uw, qe
 	# Now Pose
     x_p = odom_msg.pose.pose.position.x
@@ -35,7 +52,11 @@ def New_cmd(odom_msg):
     q=Quat_Euler.Quat_TF(0,0, odom_msg.pose.pose.orientation.z, odom_msg.pose.pose.orientation.w)
     theta_p=q.Euler_z()	# z軸周りの回転
     v_p = odom_msg.twist.twist.linear.x
+    if i ==1:
+        v_p = qe
+        i = 0
 
+<<<<<<< HEAD
 #    now_Time = rospy.Time.now()
 #    dt = now_Time - pre_Time
 #    dt = dt.secs + dt.nsecs/(10.0**9.0)
@@ -44,6 +65,9 @@ def New_cmd(odom_msg):
 #    if abs(uv) < 1.0:
 #        num += 2
 #    shutdown()
+=======
+    shutdown()
+>>>>>>> 27e56f1855e9ec716b0238dfb17c27032f2a5b70
 
 	# Reference point on Reference Path
     x_r = Reference_Path[num][1]
@@ -52,9 +76,16 @@ def New_cmd(odom_msg):
     vy_r = Reference_Path[num][4]
     ax_r = Reference_Path[num][5]
     ay_r = Reference_Path[num][6]
+    num += 1
 #    print "Xr:{0}    Yr:{1}".format(x_r,y_r)
 #    print "Vxr:{0}    Vyr:{1}".format(vx_r,vy_r)
     num += 1
+
+#    x_diff = x_r - x_p
+#    y_diff = y_r - y_p
+#    diff = math.sqrt((x_diff**2) + (y_diff**2))
+#    if diff < 0.1:
+#        num += 1
 
 	# Error value
     x_err = x_r - x_p
@@ -70,10 +101,10 @@ def New_cmd(odom_msg):
     qe += ux*math.cos(theta_p) + uy*math.sin(theta_p)
     uv = qe
     uw = ( uy*math.cos(theta_p) - ux*math.sin(theta_p) ) / uv
-    print "uv:{0}    uw:{1}".format(uv,uw)
+#    print "uv:{0}    uw:{1}".format(uv,uw)
 
-    z = max([abs(uv)/v_max, abs(uw)/w_max, 1])
-    if z == 1:
+    z = max([abs(uv)/v_max, abs(uw)/w_max, 1.0])
+    if z == 1.0:
         Vc = uv
         Wc = uw
     elif z == abs(uv)/v_max:
@@ -87,12 +118,17 @@ def New_cmd(odom_msg):
     new_twist.linear.x  = Vc
     new_twist.angular.z = Wc
     pub.publish(new_twist)
+<<<<<<< HEAD
 #    print "v:{0}    w:{1}".format(Vc,Wc)
 
 #    pre_Time = now_Time
+=======
+    print "v:{0}    w:{1}".format(Vc,Wc)
+#    print "uv:{0}    uw:{1}".format(uv,uw)
+>>>>>>> 27e56f1855e9ec716b0238dfb17c27032f2a5b70
 
 def Set():
-    global pre_Time
+#    global pre_Time
     rospy.Subscriber("/possition", Odometry, New_cmd)
 #    pre_Time = rospy.Time.now()
     rospy.spin()

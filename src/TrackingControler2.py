@@ -11,39 +11,22 @@ from nav_msgs.msg import Odometry
 import Quat_Euler
 
 # Parameter
-<<<<<<< HEAD
 kx1 = 1.2   # P gain
 ky1 = 1.2
 kx2 = 0.5   # D gain
 ky2 = 0.5
 
 qe = 0.2
-=======
-kx1 = 0.01   # P gain
-ky1 = 0.01
-kx2 = 0.0   # D gain
-ky2 = 0.0
-
-qe = 0.1
->>>>>>> 27e56f1855e9ec716b0238dfb17c27032f2a5b70
 uv = 0.0
 uw = 0.0
 v_max = 0.2
 w_max = 0.3
 
 num = 0
-<<<<<<< HEAD
 new_twist=Twist()
 
 def New_cmd(odom_msg):
     global num, stop, pre_Time
-=======
-i = 1
-new_twist=Twist()
-
-def New_cmd(odom_msg):
-    global num, stop, pre_Time, t, i
->>>>>>> 27e56f1855e9ec716b0238dfb17c27032f2a5b70
     global v_max, w_max, uv, uw, qe
 	# Now Pose
     x_p = odom_msg.pose.pose.position.x
@@ -56,7 +39,6 @@ def New_cmd(odom_msg):
         v_p = qe
         i = 0
 
-<<<<<<< HEAD
 #    now_Time = rospy.Time.now()
 #    dt = now_Time - pre_Time
 #    dt = dt.secs + dt.nsecs/(10.0**9.0)
@@ -65,9 +47,6 @@ def New_cmd(odom_msg):
 #    if abs(uv) < 1.0:
 #        num += 2
 #    shutdown()
-=======
-    shutdown()
->>>>>>> 27e56f1855e9ec716b0238dfb17c27032f2a5b70
 
 	# Reference point on Reference Path
     x_r = Reference_Path[num][1]
@@ -118,14 +97,9 @@ def New_cmd(odom_msg):
     new_twist.linear.x  = Vc
     new_twist.angular.z = Wc
     pub.publish(new_twist)
-<<<<<<< HEAD
 #    print "v:{0}    w:{1}".format(Vc,Wc)
 
 #    pre_Time = now_Time
-=======
-    print "v:{0}    w:{1}".format(Vc,Wc)
-#    print "uv:{0}    uw:{1}".format(uv,uw)
->>>>>>> 27e56f1855e9ec716b0238dfb17c27032f2a5b70
 
 def Set():
 #    global pre_Time

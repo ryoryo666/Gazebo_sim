@@ -11,23 +11,24 @@ from nav_msgs.msg import Odometry
 import Quat_Euler
 
 # Parameter
-kx1 = 1.2   # P gain
-ky1 = 1.2
-kx2 = 0.5   # D gain
-ky2 = 0.5
+kx1 = 1.5   # P gain
+ky1 = 1.5
+kx2 = 0.2   # D gain
+ky2 = 0.2
+v_max = 0.5
+w_max = 0.4
 
 qe = 0.2
 uv = 0.0
 uw = 0.0
-v_max = 0.2
-w_max = 0.3
 
 num = 0
+i = 1
 new_twist=Twist()
 
 def New_cmd(odom_msg):
     global num, stop, pre_Time
-    global v_max, w_max, uv, uw, qe
+    global v_max, w_max, uv, uw, qe, i
 	# Now Pose
     x_p = odom_msg.pose.pose.position.x
     y_p = odom_msg.pose.pose.position.y
@@ -39,14 +40,9 @@ def New_cmd(odom_msg):
         v_p = qe
         i = 0
 
-#    now_Time = rospy.Time.now()
-#    dt = now_Time - pre_Time
-#    dt = dt.secs + dt.nsecs/(10.0**9.0)
-#    t += dt
-
 #    if abs(uv) < 1.0:
 #        num += 2
-#    shutdown()
+    shutdown()
 
 	# Reference point on Reference Path
     x_r = Reference_Path[num][1]
@@ -55,16 +51,9 @@ def New_cmd(odom_msg):
     vy_r = Reference_Path[num][4]
     ax_r = Reference_Path[num][5]
     ay_r = Reference_Path[num][6]
-    num += 1
+#    num += 1
 #    print "Xr:{0}    Yr:{1}".format(x_r,y_r)
 #    print "Vxr:{0}    Vyr:{1}".format(vx_r,vy_r)
-    num += 1
-
-#    x_diff = x_r - x_p
-#    y_diff = y_r - y_p
-#    diff = math.sqrt((x_diff**2) + (y_diff**2))
-#    if diff < 0.1:
-#        num += 1
 
 	# Error value
     x_err = x_r - x_p
@@ -72,6 +61,8 @@ def New_cmd(odom_msg):
     vx_err = vx_r - (v_p*math.cos(theta_p))
     vy_err = vy_r - (v_p*math.sin(theta_p))
 #    print "Xerr:{0}    Yerr:{1}".format(x_err,y_err)
+    if x_err < 0.1:
+        num += 1
 
     ux = ax_r + kx1*vx_err + kx2*x_err
     uy = ay_r + ky1*vy_err + ky2*y_err
@@ -97,7 +88,7 @@ def New_cmd(odom_msg):
     new_twist.linear.x  = Vc
     new_twist.angular.z = Wc
     pub.publish(new_twist)
-#    print "v:{0}    w:{1}".format(Vc,Wc)
+    print "v:{0}    w:{1}".format(Vc,Wc)
 
 #    pre_Time = now_Time
 

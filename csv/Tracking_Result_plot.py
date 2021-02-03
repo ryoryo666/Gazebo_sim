@@ -39,9 +39,9 @@ ax.set_xlabel("X[m]", fontsize=18)
 ax.set_ylabel("Y[m]", fontsize=18)
 
 # x and y Axis Limit
-x_lim = 5
-y_lim = 5
-ax.set_xlim(-1*x_lim, x_lim)
+#x_lim = 5
+y_lim = 1.1
+#ax.set_xlim(-1*x_lim, x_lim)
 ax.set_ylim(-1*y_lim, y_lim)
 
 # Position Adjustment

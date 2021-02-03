@@ -21,3 +21,28 @@ MobileTrajectory_DFL1-3.csv
     ky1 = 1.2
     kx2 = 0.5
     ky2 = 0.5
+
+↓初期誤差有り↓
+MobileTrajectory_DFL1-5.csv
+kx1 = 1.0   # P gain
+ky1 = 1.0
+kx2 = 0.1   # D gain
+ky2 = 0.1
+
+MobileTrajectory_DFL1-6.csv
+kx1 = 1.0   # P gain
+ky1 = 1.0
+kx2 = 0.5   # D gain
+ky2 = 0.5
+
+MobileTrajectory_DFL1-7.csv
+kx1 = 1.0   # P gain
+ky1 = 1.0
+kx2 = 0.2   # D gain
+ky2 = 0.2
+
+MobileTrajectory_DFL1-8.csv
+kx1 = 1.5   # P gain
+ky1 = 1.5
+kx2 = 0.2   # D gain
+ky2 = 0.2

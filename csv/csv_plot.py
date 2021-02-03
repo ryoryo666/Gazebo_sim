@@ -2,19 +2,22 @@ import glob,os
 import numpy as np
 import matplotlib.pyplot as plt
 
-file_list=glob.glob(os.path.join("", "*.csv"))
+c_path=os.path.dirname(os.path.abspath(__file__))
+file_list=glob.glob(os.path.join(c_path, "*.csv"))
 file_list.sort()
+
 for i in range(len(file_list)):
-	print str(i)+":"+file_list[i]
+	print str(i)+":"+file_list[i].replace(c_path+"/", "")
 number=int(raw_input("\nPlot File Number>> "))
 data=np.loadtxt(fname=file_list[number], delimiter = ",")
-#x:0 y:1 theta:2 v:3 w:4 time:5
+file_name = file_list[number].replace(c_path+"/", "")
+
 x=data[:,1]
 y=data[:,2]
 
 
-#plt.plot(x,y,color="red", lw="1.0")
-plt.scatter(x,y,color="red", lw="0.5", s=0.5)
+#plt.plot(x,y,color="red", lw="1.0", label=file_name)
+plt.scatter(x,y,color="red", lw="0.5", s=0.5, label=file_name)
 
 
 # Label Name

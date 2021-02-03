@@ -16,22 +16,17 @@ ky1 = 1.2
 kx2 = 0.5   # D gain
 ky2 = 0.5
 
-pre_x = 0.0
-pre_y = 0.0
-pre_v = 0.0
-pre_vx_r = 0.0
-pre_vy_r = 0.0
-qe = 0.118
+qe = 0.2
 uv = 0.0
 uw = 0.0
 v_max = 0.4
 w_max = 0.3
 
-num = 2
+num = 0
 new_twist=Twist()
 
 def New_cmd(odom_msg):
-    global num, stop, pre_Time, pre_vx_r, pre_vy_r, pre_x, pre_y,t
+    global num, stop, pre_Time
     global v_max, w_max, uv, uw, qe
 	# Now Pose
     x_p = odom_msg.pose.pose.position.x
@@ -46,9 +41,9 @@ def New_cmd(odom_msg):
 #    dt = dt.secs + dt.nsecs/(10.0**9.0)
 #    t += dt
 
-    if abs(uv) < 1.0:
-        num += 2
-    shutdown()
+#    if abs(uv) < 1.0:
+#        num += 2
+#    shutdown()
 
 	# Reference point on Reference Path
     x_r = Reference_Path[num][1]
@@ -59,6 +54,7 @@ def New_cmd(odom_msg):
     ay_r = Reference_Path[num][6]
 #    print "Xr:{0}    Yr:{1}".format(x_r,y_r)
 #    print "Vxr:{0}    Vyr:{1}".format(vx_r,vy_r)
+    num += 1
 
 	# Error value
     x_err = x_r - x_p
@@ -93,11 +89,6 @@ def New_cmd(odom_msg):
     pub.publish(new_twist)
 #    print "v:{0}    w:{1}".format(Vc,Wc)
 
-    pre_x = x_p
-    pre_y = y_p
-    pre_v = v_p
-    pre_vx_r = vx_r
-    pre_vy_r = vy_r
 #    pre_Time = now_Time
 
 def Set():
